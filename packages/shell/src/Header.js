@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from './logo';
+import Logo from './Logo';
 
 const Header = () => (<nav className="relative flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-bark mb-3">
   <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
