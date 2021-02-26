@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "lerna run --parallel start",
+    "build": "lerna run build",
+    "serve": "lerna run --parallel serve",
+    "clean": "lerna run --parallel clean"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.4",
+    "lerna": "3.22.1",
+    "postcss": "^8.2.6",
+    "tailwindcss": "^2.0.3"
+  },
+  "name": "module-federation-poc",
+  "workspaces": [
+    "packages/*"
+  ]
+}
