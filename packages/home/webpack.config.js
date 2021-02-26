@@ -3,7 +3,7 @@ const ModuleFederationPlugin = require("webpack").container
   .ModuleFederationPlugin;
 const path = require("path");
 const deps = require("./package.json").dependencies;
-module.exports = {
+module.exports = (_, argv) => ({
   entry: "./src/index",
   mode: "development",
   devServer: {
@@ -14,7 +14,9 @@ module.exports = {
     hotOnly: false,
   },
   output: {
-    publicPath: "auto",
+    publicPath: argv.mode === "development"
+      ? "auto"
+      : "https://microfrontends-demo-home.vercel.app/",
     chunkFilename: "[id].[contenthash].js",
   },
   resolve: {
@@ -47,10 +49,6 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "home",
       filename: "remoteEntry.js",
-      remotes: {
-        shell: "shell@http://localhost:3000/remoteEntry.js",
-        home: "home@http://localhost:3001/remoteEntry.js",
-      },
       exposes: {
         "./HomepageService": "./src/HomepageService",
       },
@@ -72,4 +70,4 @@ module.exports = {
       template: "./public/index.html",
     }),
   ],
-};
+});

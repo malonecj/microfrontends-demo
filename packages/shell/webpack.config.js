@@ -3,7 +3,7 @@ const ModuleFederationPlugin = require("webpack").container
   .ModuleFederationPlugin;
 const path = require("path");
 const deps = require("./package.json").dependencies;
-module.exports = {
+module.exports = (_, argv) => ({
   entry: "./src/index",
   mode: "development",
   devServer: {
@@ -26,7 +26,9 @@ module.exports = {
     },
   },
   output: {
-    publicPath: "auto",
+    publicPath: argv.mode === "development"
+      ? "auto"
+      : "https://microfrontends-demo-shell.vercel.app/",
     chunkFilename: "[id].[contenthash].js",
   },
   module: {
@@ -90,4 +92,4 @@ module.exports = {
       template: "./public/index.html",
     }),
   ],
-};
+});
