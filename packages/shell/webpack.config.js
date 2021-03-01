@@ -3,8 +3,13 @@ const ModuleFederationPlugin = require("webpack").container
   .ModuleFederationPlugin;
 const path = require("path");
 const deps = require("./package.json").dependencies;
+
+
 module.exports = (_, argv) => {
-  console.log(argv)
+  const remoteShell = argv.mode === 'production' ? 'https://microfrontends-demo.netlify.app' : 'http://localhost:3001';
+  const remoteHome = argv.mode === 'production' ? 'https://microfrontends-demo-home.netlify.app' : 'http://localhost:3001';
+  const remoteSearchResults = argv.mode === 'production' ? 'https://microfrontends-demo-search.netlify.app' : 'http://localhost:3002';
+  const remoteViewItemPage = argv.mode === 'production' ? 'https://microfrontends-demo-view-item.netlify.app' : 'http://localhost:3002';
   return {
     entry: "./src/index",
     mode: "development",
@@ -64,10 +69,10 @@ module.exports = (_, argv) => {
         name: "shell",
         filename: "remoteEntry.js",
         remotes: {
-          home: "home@http://localhost:3001/remoteEntry.js",
-          shell: "shell@http://localhost:3000/remoteEntry.js",
-          searchResults: "searchResults@http://localhost:3002/remoteEntry.js",
-          viewItemPage: "viewItemPage@http://localhost:3003/remoteEntry.js",
+          home: `home@${remoteHome}/remoteEntry.js`,
+          shell: `shell@${remoteShell}/remoteEntry.js`,
+          searchResults: `searchResults@${remoteSearchResults}/remoteEntry.js`,
+          viewItemPage: `viewItemPage@${remoteViewItemPage}/remoteEntry.js`,
         },
         exposes: {
           "./Shell": "./src/Shell",
