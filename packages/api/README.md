@@ -1,11 +1,11 @@
-# `ads-service`
+# `api`
 
 > TODO: description
 
 ## Usage
 
 ```
-const adsService = require('ads-service');
+const adsService = require('api');
 
 // TODO: DEMONSTRATE API
 ```
