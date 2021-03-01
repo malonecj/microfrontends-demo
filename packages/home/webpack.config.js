@@ -14,9 +14,8 @@ module.exports = (_, argv) => ({
     hotOnly: false,
   },
   output: {
-    publicPath: argv.mode === "development"
-      ? "auto"
-      : "https://microfrontends-demo-home.vercel.app/",
+    publicPath: argv.mode === "production"
+      ? "https://microfrontends-demo-home.vercel.app/" : "auto",
     chunkFilename: "[id].[contenthash].js",
   },
   resolve: {
@@ -50,7 +49,7 @@ module.exports = (_, argv) => ({
       name: "home",
       filename: "remoteEntry.js",
       exposes: {
-        "./HomepageService": "./src/HomepageService",
+        "./HomepageService": "./src/index",
       },
       shared: [
         {
@@ -65,9 +64,6 @@ module.exports = (_, argv) => ({
           },
         },
       ],
-    }),
-    new HtmlWebpackPlugin({
-      template: "./public/index.html",
-    }),
+    })
   ],
 });
