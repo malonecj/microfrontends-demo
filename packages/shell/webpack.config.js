@@ -29,7 +29,7 @@ module.exports = (_, argv) => {
     },
     output: {
       publicPath: argv.mode === "production"
-        ? "https://microfrontends-demo.vercel.app/" : "auto",
+        ? process.env.URL : "auto",
       chunkFilename: "[id].[contenthash].js",
     },
     module: {

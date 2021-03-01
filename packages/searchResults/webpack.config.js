@@ -14,7 +14,8 @@ module.exports = {
     hotOnly: false,
   },
   output: {
-    publicPath: "auto",
+    publicPath: argv.mode === "production"
+      ? process.env.URL : "auto",
     chunkFilename: "[id].[contenthash].js",
   },
   resolve: {

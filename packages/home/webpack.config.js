@@ -15,7 +15,7 @@ module.exports = (_, argv) => ({
   },
   output: {
     publicPath: argv.mode === "production"
-      ? "https://microfrontends-demo-home.vercel.app/" : "auto",
+      ? process.env.URL : "auto",
     chunkFilename: "[id].[contenthash].js",
   },
   resolve: {
