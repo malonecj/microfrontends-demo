@@ -3,13 +3,11 @@ import {
     useQuery,
 } from "react-query";
 
-const endpoint = process.env.apiEndpoint || 'http://localhost:8888/';
-
 function useAds(category) {
 
     return useQuery(["ads", category], async () => {
         const result = await request(
-            endpoint,
+            GRAPH_QL_ENDPOINT,
             gql`
           query {
             ads(category: "${category}") {
