@@ -4,6 +4,7 @@ const ModuleFederationPlugin = webpack.container
   .ModuleFederationPlugin;
 const path = require("path");
 const deps = require("./package.json").dependencies;
+
 module.exports = (_, argv) => {
   const isProduction = argv.mode === "production";
   return {
@@ -76,7 +77,7 @@ module.exports = (_, argv) => {
         template: "./public/index.html",
       }),
       new webpack.DefinePlugin({
-        GRAPH_QL_ENDPOINT: isProduction ? process.env.apiEndpoint : 'http://localhost:8888/'
+        GRAPH_QL_ENDPOINT: isProduction ? JSON.stringify(process.env.apiEndpoint) : 'http://localhost:8888/'
       })
     ],
   };
