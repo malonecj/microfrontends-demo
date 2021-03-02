@@ -21,6 +21,8 @@ function useAds(category) {
         `
         );
         return result.ads;
+    }, {
+        refetchOnWindowFocus: false
     });
 }
 

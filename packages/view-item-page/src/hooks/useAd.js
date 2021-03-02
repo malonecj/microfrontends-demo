@@ -26,6 +26,7 @@ function useAd(adId) {
         },
         {
             enabled: !!adId,
+            refetchOnWindowFocus: false
         }
     );
 }
