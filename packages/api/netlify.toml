@@ -4,3 +4,8 @@
 
 [dev]
   autoLaunch = false # a Boolean value that determines if Netlify Dev launches the local server address in your browser
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/api"
+  status = 200

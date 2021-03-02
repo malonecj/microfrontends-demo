@@ -1,2 +1,0 @@
-/ /.netlify/functions/api 200!
-/api/*  https://microfrontends-demo-api.netlify.app/:splat  200
