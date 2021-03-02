@@ -79,6 +79,7 @@ module.exports = (_, argv) => {
         exposes: {
           "./Shell": "./src/Shell",
           "./Service": "./src/Service",
+          "./Loader": "./src/Loader",
         },
         shared: [
           {

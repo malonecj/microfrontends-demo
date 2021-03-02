@@ -1,5 +1,6 @@
 import React from 'react';
 import AdItem from './AdItem';
+import Loader from "shell/Loader";
 import useAds from './hooks/useAds';
 
 const Title = ({ text }) => {
@@ -11,7 +12,7 @@ const Title = ({ text }) => {
 const ResultsList = ({ category }) => {
     const { data, isFetching } = useAds(category);
     if (isFetching) {
-        return "Loading"
+        return <Loader />
     }
     return (
         <section className="text-gray-600 body-font">

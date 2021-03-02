@@ -7,6 +7,7 @@ import {
 import Header from "./Header";
 import Footer from "./Footer";
 import { ServiceProvider } from "./Service";
+import Loader from './Loader';
 
 const HomePageService = React.lazy(() => import("home/HomepageService"));
 const SearchResultsService = React.lazy(() => import("searchResults/SearchResultsService"));
@@ -21,7 +22,7 @@ export default function Shell() {
       <ServiceProvider>
         <BrowserRouter>
           <Header />
-          <React.Suspense fallback={"Loading"}>
+          <React.Suspense fallback={Loader}>
             <Routes>
               <Route path="/home" element={<HomePageService />} />
               <Route path="/ads" element={<SearchResultsService />} />
