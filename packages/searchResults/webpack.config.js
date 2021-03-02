@@ -4,6 +4,7 @@ const ModuleFederationPlugin = require("webpack").container
 const path = require("path");
 const deps = require("./package.json").dependencies;
 module.exports = (_, argv) => {
+  const isProduction = argv.mode === "production";
   return {
     entry: "./src/index",
     mode: "development",
@@ -15,7 +16,7 @@ module.exports = (_, argv) => {
       hotOnly: false,
     },
     output: {
-      publicPath: argv.mode === "production"
+      publicPath: isProduction
         ? `${process.env.URL}/` : "auto",
       chunkFilename: "[id].[contenthash].js",
     },
@@ -73,6 +74,9 @@ module.exports = (_, argv) => {
       new HtmlWebpackPlugin({
         template: "./public/index.html",
       }),
+      new webpack.DefinePlugin({
+        GRAPH_QL_ENDPOINT: isProduction ? process.env.apiEndpoint : 'http://localhost:8888/'
+      })
     ],
   };
 }

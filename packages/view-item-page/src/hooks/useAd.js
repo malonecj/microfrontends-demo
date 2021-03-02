@@ -3,14 +3,12 @@ import {
     useQuery,
 } from "react-query";
 
-const endpoint = process.env.apiEndpoint || 'http://localhost:8888/';
-
 function useAd(adId) {
     return useQuery(
         ["ad", adId],
         async () => {
             const { ad } = await request(
-                endpoint,
+                GRAPH_QL_ENDPOINT,
                 gql`
           query {
             ad(id: ${adId}) {
