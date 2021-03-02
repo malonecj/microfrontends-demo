@@ -14,7 +14,8 @@ module.exports = (_, argv) => {
   const remoteViewItemPage = argv.mode === 'production' ? 'https://microfrontends-demo-view-item.netlify.app' : 'http://localhost:3003';
   return {
     entry: "./src/index",
-    mode: "development",
+    mode: argv.mode,
+    devtool: 'source-map',
     devServer: {
       contentBase: path.join(__dirname, "dist"),
       port: 3000,

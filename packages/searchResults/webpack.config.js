@@ -9,7 +9,8 @@ module.exports = (_, argv) => {
   const isProduction = argv.mode === "production";
   return {
     entry: "./src/index",
-    mode: "development",
+    mode: argv.mode,
+    devtool: 'source-map',
     devServer: {
       contentBase: path.join(__dirname, "dist"),
       port: 3002,

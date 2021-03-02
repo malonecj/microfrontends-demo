@@ -5,7 +5,8 @@ const path = require("path");
 const deps = require("./package.json").dependencies;
 module.exports = (_, argv) => ({
   entry: "./src/index",
-  mode: "development",
+  mode: argv.mode,
+  devtool: 'source-map',
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     port: 3001,
