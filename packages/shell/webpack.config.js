@@ -9,7 +9,7 @@ module.exports = (_, argv) => {
   const remoteShell = argv.mode === 'production' ? 'https://microfrontends-demo.netlify.app' : 'http://localhost:3001';
   const remoteHome = argv.mode === 'production' ? 'https://microfrontends-demo-home.netlify.app' : 'http://localhost:3001';
   const remoteSearchResults = argv.mode === 'production' ? 'https://microfrontends-demo-search.netlify.app' : 'http://localhost:3002';
-  const remoteViewItemPage = argv.mode === 'production' ? 'https://microfrontends-demo-view-item.netlify.app' : 'http://localhost:3002';
+  const remoteViewItemPage = argv.mode === 'production' ? 'https://microfrontends-demo-view-item.netlify.app' : 'http://localhost:3003';
   return {
     entry: "./src/index",
     mode: "development",
