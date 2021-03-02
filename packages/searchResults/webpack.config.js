@@ -78,7 +78,7 @@ module.exports = (_, argv) => {
         template: "./public/index.html",
       }),
       new webpack.DefinePlugin({
-        GRAPH_QL_ENDPOINT: isProduction ? JSON.stringify('/api/') : JSON.stringify('http://localhost:8888/')
+        GRAPH_QL_ENDPOINT: isProduction ? JSON.stringify(process.env.apiEndpoint) : JSON.stringify('http://localhost:8888/')
       })
     ],
   };

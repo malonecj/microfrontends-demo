@@ -101,13 +101,6 @@ module.exports = (_, argv) => {
       new HtmlWebpackPlugin({
         template: "./public/index.html",
       }),
-      new CopyPlugin({
-        patterns: [
-          {
-            from: "_redirects",
-          },
-        ],
-      }),
     ],
   }
 };
