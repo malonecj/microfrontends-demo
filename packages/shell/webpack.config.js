@@ -1,4 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+const webpack = require("webpack");
 const ModuleFederationPlugin = require("webpack").container
   .ModuleFederationPlugin;
 const path = require("path");
@@ -96,6 +98,13 @@ module.exports = (_, argv) => {
       }),
       new HtmlWebpackPlugin({
         template: "./public/index.html",
+      }),
+      new CopyPlugin({
+        patterns: [
+          {
+            from: "_redirects",
+          },
+        ],
       }),
     ],
   }
