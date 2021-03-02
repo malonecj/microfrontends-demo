@@ -3,7 +3,7 @@ import {
     useQuery,
 } from "react-query";
 
-const endpoint = 'http://localhost:8888/';
+const endpoint = process.env.apiEndpoint || 'http://localhost:8888/';
 
 function useAds(category) {
 
