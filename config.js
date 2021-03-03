@@ -7,7 +7,7 @@ const getProductionUrl = (site = '') => `${PRODUCTION_ROOT}${site}.netlify.app`;
 
 const config = {
     production: {
-        publicPath: process.env.URL,
+        publicPath: `${process.env.URL}/`,
         remoteUrls: {
             SHELL: getProductionUrl(),
             HOME: getProductionUrl('-home'),
