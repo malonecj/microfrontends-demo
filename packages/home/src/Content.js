@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import diagram from './mcf.png';
 
 const Content = () => {
     return (<section className="text-gray-600 body-font">
@@ -47,7 +48,7 @@ const Content = () => {
                     </Link>
                 </div>
             </div>
-            <div className="container flex flex-wrap px-5 py-24 mx-auto items-center">
+            <div className="container flex flex-wrap px-5 py-24 mx-auto">
                 <div className="md:w-1/2 md:pr-12 md:py-8 md:border-r md:border-b-0 mb-10 md:mb-0 pb-10 border-b border-gray-200">
                     <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Microfrontends Demo</h1>
                     <p className="leading-relaxed text-base">This is a sample application which demonstrates how a microfrontend based architecture might work at gumtree.com. This app consists of 4 pages. Each page is a standalone application that can be built, tested and deployed in iosolation. It uses <a href="https://webpack.js.org/concepts/module-federation/">module federation</a> to dynamically import code from each application at runtime.</p>
@@ -57,6 +58,10 @@ const Content = () => {
                         </svg>
                     </a>
                 </div>
+                <div className="flex flex-col md:w-1/2 md:pl-12">
+                    <img src={diagram} />
+                </div>
+
             </div>
         </div>
     </section>)

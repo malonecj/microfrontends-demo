@@ -47,6 +47,10 @@ module.exports = (_, argv) => {
             presets: ["@babel/preset-react"],
           },
         },
+        {
+          test: /\.png/,
+          type: 'asset/resource'
+        },
       ],
     },
     plugins: [
