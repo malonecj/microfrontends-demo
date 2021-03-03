@@ -4,11 +4,14 @@ const ModuleFederationPlugin = webpack.container
   .ModuleFederationPlugin;
 const path = require("path");
 const deps = require("./package.json").dependencies;
+const config = require('../../config');
+
 module.exports = (_, argv) => {
-  const isProduction = argv.mode === "production";
+  const mode = argv.mode || 'development';
+  const { remoteUrls } = config[mode];
   return {
     entry: "./src/index",
-    mode: argv.mode,
+    mode,
     devtool: 'source-map',
     devServer: {
       contentBase: path.join(__dirname, "dist"),
@@ -18,8 +21,7 @@ module.exports = (_, argv) => {
       hotOnly: false,
     },
     output: {
-      publicPath:
-        isProduction ? `${process.env.URL}/` : "auto",
+      publicPath: config[mode].publicPath,
       chunkFilename: "[id].[contenthash].js",
     },
     resolve: {
@@ -56,7 +58,7 @@ module.exports = (_, argv) => {
           "./ViewItemPage": "./src/ViewItemPage",
         },
         remotes: {
-          shell: "shell@http://localhost:3000/remoteEntry.js",
+          shell: `shell@${remoteUrls.SHELL}/remoteEntry.js`,
         },
         shared: [
           {
@@ -76,7 +78,7 @@ module.exports = (_, argv) => {
         template: "./public/index.html",
       }),
       new webpack.DefinePlugin({
-        GRAPH_QL_ENDPOINT: isProduction ? JSON.stringify('/api') : JSON.stringify('http://localhost:8888/')
+        GRAPH_QL_ENDPOINT: JSON.stringify(remoteUrls.API)
       })
 
     ],

@@ -5,16 +5,15 @@ const ModuleFederationPlugin = require("webpack").container
   .ModuleFederationPlugin;
 const path = require("path");
 const deps = require("./package.json").dependencies;
+const config = require('../../config');
 
 
 module.exports = (_, argv) => {
-  const remoteShell = argv.mode === 'production' ? 'https://microfrontends-demo.netlify.app' : 'http://localhost:3001';
-  const remoteHome = argv.mode === 'production' ? 'https://microfrontends-demo-home.netlify.app' : 'http://localhost:3001';
-  const remoteSearchResults = argv.mode === 'production' ? 'https://microfrontends-demo-search.netlify.app' : 'http://localhost:3002';
-  const remoteViewItemPage = argv.mode === 'production' ? 'https://microfrontends-demo-view-item.netlify.app' : 'http://localhost:3003';
+  const mode = argv.mode || 'development';
+  const { remoteUrls } = config[mode];
   return {
     entry: "./src/index",
-    mode: argv.mode,
+    mode,
     devtool: 'source-map',
     devServer: {
       contentBase: path.join(__dirname, "dist"),
@@ -36,8 +35,7 @@ module.exports = (_, argv) => {
       },
     },
     output: {
-      publicPath: argv.mode === "production"
-        ? `${process.env.URL}/` : "auto",
+      publicPath: config[mode].publicPath,
       chunkFilename: "[id].[contenthash].js",
     },
     module: {
@@ -72,10 +70,10 @@ module.exports = (_, argv) => {
         name: "shell",
         filename: "remoteEntry.js",
         remotes: {
-          home: `home@${remoteHome}/remoteEntry.js`,
-          shell: `shell@${remoteShell}/remoteEntry.js`,
-          searchResults: `searchResults@${remoteSearchResults}/remoteEntry.js`,
-          viewItemPage: `viewItemPage@${remoteViewItemPage}/remoteEntry.js`,
+          home: `home@${remoteUrls.HOME}/remoteEntry.js`,
+          shell: `shell@${remoteUrls.SHELL}/remoteEntry.js`,
+          searchResults: `searchResults@${remoteUrls.SEARCH}/remoteEntry.js`,
+          viewItemPage: `viewItemPage@${remoteUrls.VIEW_ITEM}/remoteEntry.js`,
         },
         exposes: {
           "./Shell": "./src/Shell",
