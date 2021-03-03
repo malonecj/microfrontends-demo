@@ -1,7 +1,7 @@
 
 const PRODUCTION_ROOT = 'https://microfrontends-demo';
 const FUNCTIONS_PATH = '.netlify/functions/';
-const API_ENDPOINT = `${FUNCTIONS_PATH}/api`;
+const API_ENDPOINT = `${FUNCTIONS_PATH}api`;
 const getProductionUrl = (site = '') => `${PRODUCTION_ROOT}${site}.netlify.app`;
 
 
